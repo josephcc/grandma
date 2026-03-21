@@ -15,3 +15,6 @@ This is the index file to the planning and specification documentation for this 
 - `tech_choices.md` describes the technology choices (i.e., libraries, languages, deployment platforms) for this project, the alternatives that were considered but not used, and the reasoning behind them.
 - `architecture.md` describes the system architecture and deployment flow of the project.
 - root/`maintainance.md` is a "README" file for the non-technical maintainer, which explains how to update the content of this project and triggers an deployment to the website.
+
+
+##

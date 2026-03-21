@@ -17,17 +17,76 @@
 <TODO> After finishing the current todos, start populating `tech_choices.md` for me to review so you can plan out the actual `architecture.md` based on my key decisions.
 
 
-## User requirement
+## User requirements
 
-<TODO> There is a current website here https://lhyymed.fund/ that we are trying to rebuild with a better architecture. Browse the website in details to figure out current requirements to populate the detailed list of user requirement in this section.
+Based on the current website at https://lhyymed.fund/, the following are the detailed user requirements:
+
+### Bilingual support (i18n)
+
+- The website must support **Traditional Chinese** (primary) and **English** (secondary).
+- Users can toggle between languages. Both versions should have equivalent content.
+
+### Pages and content
+
+1. **Homepage (首頁)**
+   - Foundation name in both Chinese and English
+   - Brief introduction / hero section
+   - Navigation to all other sections
+
+2. **Foundation Mission (基金會宗旨)**
+   - Core objectives: strengthening treatment resources for major diseases, supporting patient participation in clinical research, fostering interdisciplinary medical development, creating integrated healthcare platforms combining humanistic care with science.
+
+3. **Founding Story (創辦緣起)**
+   - Narrative about Ms. Huang Yueh-Ying Lin and the motivation for establishing the foundation (her struggle with liver cirrhosis and liver cancer).
+
+4. **Founders (創辦人)**
+   - **Dr. Chun-Yen Lin** (Founder & Honorary Chairman) — Dean of College of Medicine at Chang Gung University, hepatology and immunology expert, 100+ international publications.
+   - **Dr. Po-Ting Lin** (Founder & Chairman) — Attending physician in gastroenterology and hepatology, liver cancer and precision medicine researcher.
+   - Each founder should have a portrait photo and biographical text.
+
+5. **Donations (愛心捐款)**
+   - Credit card recurring donations (external link: https://donate.newebpay.com/Period/lhyymed/lhyy)
+   - Taiwan domestic bank transfer info (元大銀行 Yuanta Commercial Bank, Guoting Branch)
+   - International wire transfer info (SWIFT code)
+   - Google Form for donor information (https://forms.gle/3hqREm5G49iFZKW56)
+
+### Design and layout
+
+- Responsive design (mobile-first, works on all screen sizes)
+- Color scheme: dark teal (#004e7a), cream (#fff8f0), dark green (#012b1b), with accent colors
+- Professional typography
+- Consistent header/footer across all pages
+- Portrait photos and decorative imagery
+
+### Contact information (footer)
+
+- Address: 2F., No. 2, Ln. 55, Tong'an St., Zhongzheng Dist., Taipei City 10037
+- Website: https://lhyymed.fund/
+- Email: lhyy.med.foundation@gmail.com
+
+### SEO requirements
+
+- Unique, descriptive page titles per page
+- Meta descriptions for each page
+- Descriptive URLs (e.g., `/about`, `/donate`, not `/page/2`)
+- Alt text on all images
+- XML sitemap
+- Mobile-friendly (Google mobile-first indexing)
+- Structured data where applicable (Organization schema)
+- Proper heading hierarchy (h1, h2, etc.)
 
 ## The non-technical maintainer requirements
 
-The non-technical maintainer will use github to update the content of the website by editing markdown files. To avoid them accidentally breaking the code, we will put all the markdown files in the main branch, and all the actual code in the source branch. This way, by default they can only see the markdown files.
+The non-technical maintainer will use GitHub to update the content of the website by editing markdown files in the `/content/` directory. All content and code live on a single branch (`main`). Any push to `main` automatically triggers Vercel to regenerate and deploy the static site, with preview URLs available on every PR.
 
-Once a markdown file is edited and commited to the main branch, post-commit actions will be automatically triggered to regenerate the static webpage and deploy it.
+### Access control
 
-<TODO> Key decision: !!! Verify this 2-branch approach above will play nicely with the hosting/deployment tech choices. If not, I am open to alternative suggestions.
+To prevent the non-technical maintainer from accidentally modifying code while still allowing the technical maintainer full access:
+
+- **CODEOWNERS file**: Require the technical maintainer's review for all files, with `/content/` exempted so the non-technical maintainer can merge content changes independently.
+- **Branch protection on `main`**: Require at least 1 approval from CODEOWNERS before merging. Content-only PRs won't need approval (exempted in CODEOWNERS); PRs touching code files will be blocked until the technical maintainer approves.
+- **Bookmarked link**: Provide the non-technical maintainer a direct link to `github.com/<repo>/tree/main/content` so they navigate straight to the content folder.
+- **README in `/content/`**: A simple guide for the non-technical maintainer explaining how to edit and add content.
 
 ## The technical maintainer requirements
 
