@@ -83,7 +83,7 @@ The non-technical maintainer will use GitHub to update the content of the websit
 
 To prevent the non-technical maintainer from accidentally modifying code while still allowing the technical maintainer full access:
 
-- **CODEOWNERS file**: Require the technical maintainer's review for all files, with `/content/` exempted so the non-technical maintainer can merge content changes independently.
+- **CODEOWNERS file**: Require the technical maintainer's review for all files, with `/content/tw/`, `/content/en/`, and `/content/README.md` exempted so the non-technical maintainer can merge markdown content changes independently. `content/site.json` is NOT exempted — it contains structured data (nav labels, donation info, footer) that could break the site if malformed, so it requires technical maintainer review.
 - **Branch protection on `main`**: Require at least 1 approval from CODEOWNERS before merging. Content-only PRs won't need approval (exempted in CODEOWNERS); PRs touching code files will be blocked until the technical maintainer approves.
 - **Bookmarked link**: Provide the non-technical maintainer a direct link to `github.com/<repo>/tree/main/content` so they navigate straight to the content folder.
 - **README in `/content/`**: A simple guide for the non-technical maintainer explaining how to edit and add content.
