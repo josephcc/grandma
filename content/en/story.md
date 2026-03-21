@@ -1,6 +1,6 @@
 ---
 title: "Our Story"
-description: "The story of Ms. Huang Yueh-Ying Lin and the founding of the foundation."
+description: "Founded in memory of Ms. Huang Yueh-Ying Lin, who bravely fought liver cirrhosis and liver cancer. Her legacy inspires our mission to improve patient care and advance clinical innovation."
 ---
 
 # Our Story

@@ -1,6 +1,6 @@
 ---
 title: "Mission"
-description: "The foundation is a non-profit organization dedicated to advancing medical innovation and patient support."
+description: "Our mission: strengthening treatment resources, supporting clinical research participation, and building an integrated healthcare platform combining humanistic care with science."
 ---
 
 # Our Mission
