@@ -32,7 +32,7 @@ grandma/
 │   ├── layouts/
 │   │   └── BaseLayout.astro    # Shared layout: head, header, footer, SEO meta
 │   ├── pages/
-│   │   ├── index.astro         # Root → redirects to /tw/
+│   │   ├── index.astro         # Root → redirects to /tw/ (required by Astro i18n)
 │   │   ├── tw/
 │   │   │   ├── index.astro     # Renders content/tw/index.md
 │   │   │   ├── mission.astro
@@ -50,12 +50,11 @@ grandma/
 │       └── global.css          # Tailwind directives + custom styles
 ├── public/
 │   ├── images/
-│   │   ├── founders/           # Portrait photos
-│   │   └── site/               # Logo, decorative images
+│   │   ├── founders/           # Portrait photos (including grandma)
+│   │   └── site/               # Logo
 │   ├── favicon.ico
 │   └── robots.txt
 ├── astro.config.mjs
-├── tailwind.config.mjs
 ├── package.json
 ├── tsconfig.json
 ├── CODEOWNERS
@@ -89,7 +88,7 @@ description: "本基金會致力於..."  # Meta description for SEO
 Page content in markdown here...
 ```
 
-The `donate.md` pages may additionally include structured frontmatter for donation methods (bank info, links), so the page template can render them in a styled layout rather than as raw markdown.
+Donation method details (bank info, links, labels) are stored in `content/site.json` under each locale's `donation` key, NOT in the donate.md frontmatter. The donate page template reads from site.json to render donation methods in a styled layout, while donate.md provides only the page intro text.
 
 ### Astro content collections
 
@@ -101,7 +100,7 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const pages = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './content' }),
+  loader: glob({ pattern: '{tw,en}/**/*.md', base: './content' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -110,6 +109,8 @@ const pages = defineCollection({
 
 export const collections = { pages };
 ```
+
+Note: The glob pattern `{tw,en}/**/*.md` intentionally excludes `content/README.md` (which has no frontmatter and would fail schema validation).
 
 Page files in `src/pages/` are thin wrappers that load the corresponding content entry and render it through the shared layout:
 
@@ -198,34 +199,24 @@ Wraps every page. Responsibilities:
 
 ## 5. Styling
 
-### Tailwind config
-
-```js
-// tailwind.config.mjs
-export default {
-  content: ['./src/**/*.{astro,html,js,jsx,ts,tsx}'],
-  theme: {
-    extend: {
-      colors: {
-        'brand-teal': '#004e7a',
-        'brand-cream': '#fff8f0',
-        'brand-green': '#012b1b',
-      },
-    },
-  },
-};
-```
+Using Tailwind CSS v4 with Astro's official Vite plugin integration. Tailwind v4 uses CSS-based configuration — no `tailwind.config.mjs` file needed.
 
 ### Global CSS
 
 ```css
 /* src/styles/global.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-/* Minimal custom styles for markdown prose */
+@theme {
+  --color-brand-teal: #004e7a;
+  --color-brand-cream: #fff8f0;
+  --color-brand-green: #012b1b;
+}
 ```
+
+Brand colors are then available as `bg-brand-teal`, `text-brand-cream`, etc.
+
+### Typography
 
 Tailwind's `@tailwindcss/typography` plugin (`prose` classes) will be used to style the rendered markdown content with proper headings, paragraphs, lists, etc.
 
@@ -271,20 +262,18 @@ bun run preview      # Preview production build locally
 4. **On PR**: Vercel creates a preview deployment with a unique URL. The non-technical maintainer can view the preview before merging.
 5. Custom domain `lhyymed.fund` configured in Vercel dashboard with DNS pointing to Vercel.
 
-### Astro + Vercel config
+### Astro config
+
+No Vercel adapter needed for static output — Vercel auto-detects Astro and serves static files. No Tailwind integration needed — Tailwind v4 uses its own Vite plugin installed via `astro add tailwind`.
 
 ```js
 // astro.config.mjs
 import { defineConfig } from 'astro/config';
-import vercel from '@astrojs/vercel';
-import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://lhyymed.fund',
-  output: 'static',
-  adapter: vercel(),
-  integrations: [tailwind(), sitemap()],
+  integrations: [sitemap()],
   i18n: {
     defaultLocale: 'tw',
     locales: ['tw', 'en'],
@@ -352,23 +341,14 @@ This is a technical change and would require the technical maintainer.
 
 ## 10. Dependencies
 
-### Production
-
-| Package | Purpose |
-|---------|---------|
-| `astro` | Static site framework |
-| `@astrojs/vercel` | Vercel deployment adapter |
-| `@astrojs/tailwind` | Tailwind CSS integration |
-| `@astrojs/sitemap` | XML sitemap generation |
-| `@astrojs/react` | React component support (for future interactive islands) |
-| `tailwindcss` | Utility-first CSS framework |
-| `@tailwindcss/typography` | Prose styling for rendered markdown |
-
-### Dev only
-
-| Package | Purpose |
-|---------|---------|
-| `typescript` | Type checking |
+| Package | Purpose | Dev only |
+|---------|---------|----------|
+| `astro` | Static site framework | |
+| `@astrojs/sitemap` | XML sitemap generation | |
+| `tailwindcss` | Utility-first CSS framework (v4, installed via `astro add tailwind`) | yes |
+| `@tailwindcss/typography` | Prose styling for rendered markdown | yes |
+| `@tailwindcss/vite` | Tailwind v4 Vite plugin (installed automatically by `astro add tailwind`) | yes |
+| `typescript` | Type checking | yes |
 
 ---
 

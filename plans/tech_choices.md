@@ -94,9 +94,9 @@ Alternative considered: single-page with client-side i18n (e.g., react-i18next) 
 | **Tailwind CSS** | Utility-first, fast development, small production bundle (purges unused), widely adopted, first-class Astro integration | Learning curve for those unfamiliar, verbose class names |
 | **Vanilla CSS / CSS Modules** | No dependencies, simple, full control | Slower development, harder to maintain consistency |
 
-**Recommendation:** Tailwind CSS. Fast to develop, produces small bundles, and Astro has first-class Tailwind integration. Good for matching the foundation's specific color scheme via theme config.
+**Recommendation:** Tailwind CSS v4. Fast to develop, produces small bundles. Astro 5.x supports Tailwind v4 via its native Vite plugin (`@tailwindcss/vite`) — installed with `astro add tailwind`. Tailwind v4 uses CSS-based configuration (`@theme` blocks) instead of `tailwind.config.mjs`, which simplifies setup. Note: `@astrojs/tailwind` is deprecated in favor of the native Vite plugin.
 
-**Decision:** Tailwind CSS.
+**Decision:** Tailwind CSS v4.
 
 ---
 

@@ -14,9 +14,6 @@
 - Do not require hosting a container or a vps
 - I like tech such as bun, vercel, github pages, but these are not hard requirements, use them to figure out the appropriate architecture.
 
-<TODO> After finishing the current todos, start populating `tech_choices.md` for me to review so you can plan out the actual `architecture.md` based on my key decisions.
-
-
 ## User requirements
 
 Based on the current website at https://lhyymed.fund/, the following are the detailed user requirements:
