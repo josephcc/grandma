@@ -1,0 +1,86 @@
+{
+  "tw": {
+    "siteName": "財團法人臺北市林黃月英醫療基金會",
+    "siteNameShort": "林黃月英醫療基金會",
+    "nav": {
+      "home": "首頁",
+      "mission": "基金會宗旨",
+      "story": "創辦緣起",
+      "founders": "創辦人",
+      "donate": "愛心捐款"
+    },
+    "languageToggle": "English",
+    "footer": {
+      "address": "10037 臺北市中正區同安街55巷2號2樓",
+      "copyright": "© 2025 財團法人臺北市林黃月英醫療基金會"
+    },
+    "donation": {
+      "creditCard": {
+        "label": "信用卡定期定額捐款請點我",
+        "url": "https://donate.newebpay.com/Period/lhyymed/lhyy"
+      },
+      "twdTransfer": {
+        "label": "台幣匯款",
+        "accountName": "財團法人臺北市林黃月英醫療基金會",
+        "bankCode": "(806) 元大銀行／古亭分行",
+        "accountNumber": "20362000082079"
+      },
+      "foreignTransfer": {
+        "label": "外幣匯款",
+        "accountName": "Lin Huang Yueh-Ying Medical Foundation",
+        "accountNumber": "0367280046861",
+        "swiftCode": "APBKTWTH",
+        "bankName": "YUANTA COMMERCIAL BANK CO., LTD.",
+        "bankAddress": "3F, NO. 210, SEC. 3, CHENGDE ROAD, TAIPEI 103, TAIWAN"
+      },
+      "donationForm": {
+        "label": "匯款請點此填寫捐款表單",
+        "url": "https://forms.gle/3hqREm5G49iFZKW56"
+      }
+    }
+  },
+  "en": {
+    "siteName": "Lin Huang Yueh-Ying Medical Foundation, Taipei",
+    "siteNameShort": "Lin Huang Yueh-Ying Medical Foundation",
+    "nav": {
+      "home": "Home",
+      "mission": "Mission",
+      "story": "Our Story",
+      "founders": "Founders",
+      "donate": "Donate"
+    },
+    "languageToggle": "中文",
+    "footer": {
+      "address": "2F., No. 2, Ln. 55, Tong'an St., Zhongzheng Dist., Taipei City 10037",
+      "copyright": "© 2025 Lin Huang Yueh-Ying Medical Foundation, Taipei"
+    },
+    "donation": {
+      "creditCard": {
+        "label": "Credit Card Recurring Donation",
+        "url": "https://donate.newebpay.com/Period/lhyymed/lhyy"
+      },
+      "twdTransfer": {
+        "label": "Taiwan Dollar Bank Transfer",
+        "accountName": "Lin Huang Yueh-Ying Medical Foundation",
+        "bankCode": "(806) Yuanta Commercial Bank / Guting Branch",
+        "accountNumber": "20362000082079"
+      },
+      "foreignTransfer": {
+        "label": "Foreign Currency Wire Transfer",
+        "accountName": "Lin Huang Yueh-Ying Medical Foundation",
+        "accountNumber": "0367280046861",
+        "swiftCode": "APBKTWTH",
+        "bankName": "YUANTA COMMERCIAL BANK CO., LTD.",
+        "bankAddress": "3F, NO. 210, SEC. 3, CHENGDE ROAD, TAIPEI 103, TAIWAN"
+      },
+      "donationForm": {
+        "label": "Click here to fill out the donation form",
+        "url": "https://forms.gle/3hqREm5G49iFZKW56"
+      }
+    }
+  },
+  "shared": {
+    "website": "https://lhyymed.fund/",
+    "email": "lhyy.med.foundation@gmail.com"
+  }
+}
