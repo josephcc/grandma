@@ -4,3 +4,6 @@
 # Markdown content — non-technical maintainer can merge freely
 /content/tw/
 /content/en/
+
+# Maintenance guide — non-technical maintainer can update
+/maintainance.md
