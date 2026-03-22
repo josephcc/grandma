@@ -1,0 +1,92 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import siteConfig from '../../content/site.json';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: 'zh-TW' | 'en';
+  locale: 'tw' | 'en';
+}
+
+const { title, description, lang, locale } = Astro.props;
+const config = siteConfig[locale];
+const shared = siteConfig.shared;
+
+const fullTitle = `${title} | ${config.siteNameShort}`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Compute alternate language URL
+const altLocale = locale === 'tw' ? 'en' : 'tw';
+const altLang = locale === 'tw' ? 'en' : 'zh-TW';
+const altPath = Astro.url.pathname.replace(`/${locale}`, `/${altLocale}`);
+const altURL = new URL(altPath, Astro.site);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang={altLang} href={altURL} />
+    <link rel="alternate" hreflang={lang} href={canonicalURL} />
+    <link rel="icon" href="/images/site/logo.png" type="image/png" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content={config.siteName} />
+    <meta property="og:locale" content={lang === 'zh-TW' ? 'zh_TW' : 'en_US'} />
+    <meta property="og:image" content={new URL('/images/site/logo.png', Astro.site)} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&family=Noto+Serif+TC:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "NonprofitOrganization",
+      "name": siteConfig.tw.siteName,
+      "alternateName": siteConfig.en.siteName,
+      "url": shared.website,
+      "email": shared.email,
+      "address": {
+        "@type": "PostalAddress",
+        ...shared.structuredAddress
+      },
+      "logo": new URL('/images/site/logo.png', Astro.site).toString()
+    })} />
+  </head>
+  <body class="min-h-screen flex flex-col bg-brand-cream">
+    <Header locale={locale} />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+
+    <!-- Scroll reveal observer -->
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>

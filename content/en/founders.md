@@ -5,6 +5,8 @@ description: "Meet the founders of the Lin Huang Yueh-Ying Medical Foundation â€
 
 # Founders
 
+<div id="lin-chun-yen"></div>
+
 ## Dr. Chun-Yen Lin (Founder & Honorary Chairman)
 
 ### Experience
@@ -23,6 +25,8 @@ Professor Lin's clinical and research expertise focuses on the immunology and cl
 - Executive Director, Taiwan Liver Cancer Association
 
 ---
+
+<div id="lin-po-ting"></div>
 
 ## Dr. Po-Ting Lin (Founder & Chairman)
 

@@ -1,0 +1,119 @@
+---
+import siteConfig from '../../content/site.json';
+
+interface Props {
+  locale: 'tw' | 'en';
+}
+
+const { locale } = Astro.props;
+const donation = siteConfig[locale].donation;
+---
+
+<div class="grid gap-6 mt-10">
+  <!-- Credit Card -->
+  <div class="bg-white rounded-2xl shadow-[0_2px_16px_rgba(0,0,0,0.04)] p-8 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300">
+    <div class="flex items-start gap-5">
+      <div class="w-12 h-12 rounded-xl bg-brand-gold/10 flex items-center justify-center shrink-0">
+        <svg class="w-6 h-6 text-brand-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
+        </svg>
+      </div>
+      <div>
+        <h2 class="text-lg font-bold text-gray-900 mb-3 font-sans">{donation.creditCard.label}</h2>
+        <a
+          href={donation.creditCard.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-6 py-2.5 bg-brand-gold text-white rounded-full font-semibold font-sans text-sm hover:bg-brand-gold/90 transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5"
+        >
+          {locale === 'tw' ? '前往捐款' : 'Donate Now'}
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TWD Transfer -->
+  <div class="bg-white rounded-2xl shadow-[0_2px_16px_rgba(0,0,0,0.04)] p-8 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300">
+    <div class="flex items-start gap-5">
+      <div class="w-12 h-12 rounded-xl bg-brand-teal/8 flex items-center justify-center shrink-0">
+        <svg class="w-6 h-6 text-brand-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+        </svg>
+      </div>
+      <div class="flex-1">
+        <h2 class="text-lg font-bold text-gray-900 mb-4 font-sans">{donation.twdTransfer.label}</h2>
+        <dl class="space-y-2 text-sm">
+          <div class="flex flex-wrap gap-x-3">
+            <dt class="text-gray-400 shrink-0 font-sans">{locale === 'tw' ? '戶名' : 'Account Name'}</dt>
+            <dd class="font-medium text-gray-700">{donation.twdTransfer.accountName}</dd>
+          </div>
+          <div class="flex flex-wrap gap-x-3">
+            <dt class="text-gray-400 shrink-0 font-sans">{locale === 'tw' ? '銀行代碼' : 'Bank Code'}</dt>
+            <dd class="font-medium text-gray-700">{donation.twdTransfer.bankCode}</dd>
+          </div>
+          <div class="flex flex-wrap gap-x-3">
+            <dt class="text-gray-400 shrink-0 font-sans">{locale === 'tw' ? '帳號' : 'Account No.'}</dt>
+            <dd class="font-medium text-gray-700 font-mono tracking-wide">{donation.twdTransfer.accountNumber}</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <!-- Foreign Transfer -->
+  <div class="bg-white rounded-2xl shadow-[0_2px_16px_rgba(0,0,0,0.04)] p-8 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300">
+    <div class="flex items-start gap-5">
+      <div class="w-12 h-12 rounded-xl bg-brand-teal/8 flex items-center justify-center shrink-0">
+        <svg class="w-6 h-6 text-brand-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5a17.92 17.92 0 01-8.716-2.247m0 0A9 9 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+        </svg>
+      </div>
+      <div class="flex-1">
+        <h2 class="text-lg font-bold text-gray-900 mb-4 font-sans">{donation.foreignTransfer.label}</h2>
+        <dl class="space-y-2 text-sm">
+          <div class="flex flex-wrap gap-x-3">
+            <dt class="text-gray-400 shrink-0 font-sans">Account Name</dt>
+            <dd class="font-medium text-gray-700">{donation.foreignTransfer.accountName}</dd>
+          </div>
+          <div class="flex flex-wrap gap-x-3">
+            <dt class="text-gray-400 shrink-0 font-sans">Account No.</dt>
+            <dd class="font-medium text-gray-700 font-mono tracking-wide">{donation.foreignTransfer.accountNumber}</dd>
+          </div>
+          <div class="flex flex-wrap gap-x-3">
+            <dt class="text-gray-400 shrink-0 font-sans">SWIFT Code</dt>
+            <dd class="font-medium text-gray-700 font-mono tracking-wide">{donation.foreignTransfer.swiftCode}</dd>
+          </div>
+          <div class="flex flex-wrap gap-x-3">
+            <dt class="text-gray-400 shrink-0 font-sans">Bank</dt>
+            <dd class="font-medium text-gray-700">{donation.foreignTransfer.bankName}</dd>
+          </div>
+          <div class="flex flex-wrap gap-x-3">
+            <dt class="text-gray-400 shrink-0 font-sans">Bank Address</dt>
+            <dd class="font-medium text-gray-700">{donation.foreignTransfer.bankAddress}</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <!-- Donation Form -->
+  <div class="bg-brand-teal/[0.03] rounded-2xl border border-brand-teal/10 p-8 text-center">
+    <p class="text-gray-500 mb-5 font-sans">
+      {donation.donationForm.label}
+    </p>
+    <a
+      href={donation.donationForm.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2 px-6 py-2.5 bg-brand-teal text-white rounded-full font-semibold font-sans text-sm hover:bg-brand-teal-dark transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5"
+    >
+      {locale === 'tw' ? '填寫表單' : 'Fill Out Form'}
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+      </svg>
+    </a>
+  </div>
+</div>

@@ -4,12 +4,27 @@
     "siteNameShort": "林黃月英醫療基金會",
     "nav": {
       "home": "首頁",
-      "mission": "基金會宗旨",
       "story": "創辦緣起",
       "founders": "創辦人",
+      "news": "最新消息",
       "donate": "愛心捐款"
     },
     "languageToggle": "English",
+    "homepage": {
+      "tagline": "Non-Profit Medical Foundation",
+      "heroTitle": ["財團法人臺北市", "林黃月英醫療基金會"],
+      "heroSubtitle": "Lin Huang Yueh-Ying Medical Foundation, Taipei, Taiwan",
+      "description": "財團法人臺北市林黃月英醫療基金會——以推動醫療創新與病人支持為核心的非營利組織。",
+      "missionLabel": "Our Mission",
+      "storyLabel": "Our Story",
+      "storyLink": "閱讀完整故事",
+      "ctaHeading": "支持我們的使命",
+      "ctaBody": "您的每一份捐款，都是為病人帶來希望的力量。",
+      "ctaButton": "愛心捐款"
+    },
+    "ui": {
+      "quickLinks": "快速連結"
+    },
     "footer": {
       "address": "10037 臺北市中正區同安街55巷2號2樓",
       "copyright": "© 2025 財團法人臺北市林黃月英醫療基金會"
@@ -40,19 +55,34 @@
     }
   },
   "en": {
-    "siteName": "Lin Huang Yueh-Ying Medical Foundation, Taipei",
+    "siteName": "Lin Huang Yueh-Ying Medical Foundation, Taipei, Taiwan",
     "siteNameShort": "Lin Huang Yueh-Ying Medical Foundation",
     "nav": {
       "home": "Home",
-      "mission": "Mission",
       "story": "Our Story",
       "founders": "Founders",
+      "news": "Recent News",
       "donate": "Donate"
     },
     "languageToggle": "中文",
+    "homepage": {
+      "tagline": "Non-Profit Medical Foundation",
+      "heroTitle": ["Lin Huang Yueh-Ying", "Medical Foundation"],
+      "heroSubtitle": "財團法人臺北市林黃月英醫療基金會 — Taipei, Taiwan",
+      "description": "Lin Huang Yueh-Ying Medical Foundation, Taipei, Taiwan — a non-profit organization dedicated to advancing medical innovation and patient support.",
+      "missionLabel": "What We Do",
+      "storyLabel": "Our Story",
+      "storyLink": "Read the full story",
+      "ctaHeading": "Support Our Mission",
+      "ctaBody": "Every donation brings hope to patients and their families.",
+      "ctaButton": "Donate"
+    },
+    "ui": {
+      "quickLinks": "Quick Links"
+    },
     "footer": {
       "address": "2F., No. 2, Ln. 55, Tong'an St., Zhongzheng Dist., Taipei City 10037",
-      "copyright": "© 2025 Lin Huang Yueh-Ying Medical Foundation, Taipei"
+      "copyright": "© 2025 Lin Huang Yueh-Ying Medical Foundation, Taipei, Taiwan"
     },
     "donation": {
       "creditCard": {
@@ -81,6 +111,12 @@
   },
   "shared": {
     "website": "https://lhyymed.fund/",
-    "email": "lhyy.med.foundation@gmail.com"
+    "email": "lhyy.med.foundation@gmail.com",
+    "structuredAddress": {
+      "streetAddress": "2F., No. 2, Ln. 55, Tong'an St.",
+      "addressLocality": "Zhongzheng Dist., Taipei City",
+      "postalCode": "10037",
+      "addressCountry": "TW"
+    }
   }
 }

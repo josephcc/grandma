@@ -1,0 +1,49 @@
+---
+import siteConfig from '../../content/site.json';
+
+interface Props {
+  locale: 'tw' | 'en';
+}
+
+const { locale } = Astro.props;
+const config = siteConfig[locale];
+const shared = siteConfig.shared;
+---
+
+<footer class="bg-brand-green text-white/70">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <!-- Foundation info -->
+      <div class="md:col-span-2">
+        <img src="/images/site/logo.png" alt={config.siteName} class="h-10 w-auto mb-4 brightness-0 invert opacity-80" />
+        <h3 class="text-white font-semibold text-lg mb-4 font-sans">{config.siteName}</h3>
+        <address class="not-italic text-sm leading-relaxed space-y-2">
+          <p>{config.footer.address}</p>
+          <p>
+            <a href={`mailto:${shared.email}`} class="hover:text-white transition-colors underline decoration-white/30 underline-offset-2 hover:decoration-white">
+              {shared.email}
+            </a>
+          </p>
+        </address>
+      </div>
+
+      <!-- Quick links -->
+      <div>
+        <h3 class="text-white font-semibold text-sm uppercase tracking-wider mb-4 font-sans">
+          {config.ui.quickLinks}
+        </h3>
+        <nav aria-label={config.ui.quickLinks} class="flex flex-col gap-2.5 text-sm">
+          <a href={`/${locale}/story`} class="hover:text-white transition-colors">{config.nav.story}</a>
+          <a href={`/${locale}/founders`} class="hover:text-white transition-colors">{config.nav.founders}</a>
+          <a href={`/${locale}/news`} class="hover:text-white transition-colors">{config.nav.news}</a>
+          <a href={`/${locale}/donate`} class="hover:text-white transition-colors font-medium text-brand-gold">{config.nav.donate}</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-white/40">
+      <p>{config.footer.copyright}</p>
+      <a href={shared.website} class="hover:text-white/60 transition-colors">{shared.website}</a>
+    </div>
+  </div>
+</footer>

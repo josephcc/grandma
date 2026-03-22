@@ -1,0 +1,129 @@
+---
+import siteConfig from '../../content/site.json';
+
+interface Props {
+  locale: 'tw' | 'en';
+}
+
+const { locale } = Astro.props;
+const config = siteConfig[locale];
+const altLocale = locale === 'tw' ? 'en' : 'tw';
+const currentPath = Astro.url.pathname;
+const altPath = currentPath.replace(`/${locale}`, `/${altLocale}`);
+
+const navItems = [
+  { label: config.nav.home, href: `/${locale}/` },
+  { label: config.nav.story, href: `/${locale}/story` },
+  { label: config.nav.founders, href: `/${locale}/founders` },
+  { label: config.nav.news, href: `/${locale}/news` },
+];
+
+function isActive(href: string): boolean {
+  if (href.endsWith('/')) return currentPath === href;
+  return currentPath === href || currentPath === href + '/';
+}
+---
+
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
+  <nav aria-label={locale === 'tw' ? '主要導覽' : 'Main navigation'} class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href={`/${locale}/`} class="flex items-center gap-3 shrink-0 group">
+        <img src="/images/site/logo.png" alt={config.siteName} class="h-8 w-auto transition-transform duration-300 group-hover:scale-105 brightness-0" />
+        <span class="hidden sm:inline text-sm font-semibold leading-tight max-w-48 text-gray-800">
+          {config.siteNameShort}
+        </span>
+      </a>
+
+      <!-- Desktop nav -->
+      <div class="hidden md:flex items-center gap-1">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              'px-3 py-2 rounded-md text-sm font-medium transition-all duration-200',
+              isActive(item.href)
+                ? 'bg-brand-teal/10 text-brand-teal'
+                : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50',
+            ]}
+          >
+            {item.label}
+          </a>
+        ))}
+
+        <!-- Language toggle -->
+        <a
+          href={altPath}
+          class="ml-2 px-3 py-1.5 text-sm font-medium rounded-md text-gray-400 hover:text-gray-700 transition-colors"
+          aria-label={locale === 'tw' ? 'Switch to English' : '切換至中文'}
+        >
+          {config.languageToggle}
+        </a>
+
+        <!-- Prominent Donate CTA -->
+        <a
+          href={`/${locale}/donate`}
+          class="ml-3 px-5 py-2 text-sm font-semibold rounded-full bg-brand-gold text-white shadow-sm hover:bg-brand-gold/90 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+        >
+          {config.nav.donate}
+        </a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden p-2 rounded-md text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-colors"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden pb-4">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'block px-3 py-2.5 rounded-md text-base font-medium transition-colors',
+            isActive(item.href)
+              ? 'bg-brand-teal/10 text-brand-teal'
+              : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50',
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+      <a
+        href={`/${locale}/donate`}
+        class="block px-3 py-2.5 mt-2 rounded-full text-center text-base font-semibold bg-brand-gold text-white"
+      >
+        {config.nav.donate}
+      </a>
+      <a
+        href={altPath}
+        class="block px-3 py-2.5 mt-2 rounded-md text-base font-medium text-center text-gray-400"
+      >
+        {config.languageToggle}
+      </a>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const hamburger = document.getElementById('hamburger-icon');
+  const closeIcon = document.getElementById('close-icon');
+
+  btn?.addEventListener('click', () => {
+    const wasHidden = menu?.classList.toggle('hidden');
+    hamburger?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
+    btn.setAttribute('aria-expanded', String(!wasHidden));
+  });
+</script>

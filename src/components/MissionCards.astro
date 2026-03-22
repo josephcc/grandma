@@ -1,0 +1,38 @@
+---
+interface Props {
+  body: string;
+}
+
+const { body } = Astro.props;
+
+// Parse markdown body to extract intro paragraph and list items with emoji icons
+const lines = body.split('\n');
+const intro = lines
+  .filter(l => !l.trim().startsWith('#') && !l.trim().startsWith('-') && l.trim())
+  .join(' ')
+  .trim();
+
+const emojiRegex = /^(\p{Emoji_Presentation}|\p{Extended_Pictographic})\s*/u;
+const items = lines
+  .filter(l => l.trim().startsWith('- '))
+  .map(l => {
+    const text = l.replace(/^-\s*/, '');
+    const match = text.match(emojiRegex);
+    return match
+      ? { icon: match[1], text: text.slice(match[0].length) }
+      : { icon: null, text };
+  });
+---
+
+{intro && <p class="text-center text-brand-teal text-lg mb-10 max-w-3xl mx-auto">{intro}</p>}
+
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+  {items.map(item => (
+    <div class="mission-card group">
+      {item.icon && (
+        <span class="mission-card-icon" aria-hidden="true">{item.icon}</span>
+      )}
+      <p class="text-gray-600 leading-relaxed">{item.text}</p>
+    </div>
+  ))}
+</div>

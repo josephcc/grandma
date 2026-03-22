@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { getEntry, render } from 'astro:content';
+
+const entry = await getEntry('pages', 'en/story');
+if (!entry) throw new Error('Content not found: en/story');
+const { Content } = await render(entry);
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.description} lang="en" locale="en">
+  <PageHero title="Our Story" subtitle="創辦緣起" />
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 py-16 md:py-24">
+    <div class="grid md:grid-cols-5 gap-12 items-start">
+      <div class="md:col-span-2 reveal">
+        <div class="sticky top-24">
+          <div class="relative">
+            <div class="absolute -inset-3 bg-brand-teal/5 rounded-3xl -rotate-2"></div>
+            <img
+              src="/images/founders/lin-huang-yueh-ying.png"
+              alt="Ms. Huang Yueh-Ying Lin"
+              class="relative rounded-2xl shadow-lg w-full object-cover"
+            />
+          </div>
+          <p class="mt-4 text-center text-sm text-gray-400 italic font-sans">Ms. Huang Yueh-Ying Lin</p>
+        </div>
+      </div>
+      <div class="md:col-span-3 reveal">
+        <div class="prose prose-lg prose-gray max-w-none prose-headings:text-brand-teal prose-headings:font-sans prose-a:text-brand-teal prose-p:text-gray-500 prose-h1:hidden">
+          <Content />
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

@@ -1,0 +1,72 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-brand-teal: #2a3a5c;
+  --color-brand-teal-dark: #1a2640;
+  --color-brand-cream: #f7f5f0;
+  --color-brand-green: #141c2e;
+  --color-brand-gold: #c4956a;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: "Noto Sans TC", "Inter", system-ui, -apple-system, sans-serif;
+    color: #1e2232;
+    line-height: 1.7;
+  }
+
+  /* Serif display font for headings */
+  h1, h2, h3 {
+    font-family: "Playfair Display", "Noto Serif TC", "Noto Sans TC", Georgia, serif;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  /* Smooth reveal animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Stagger children */
+  .reveal-stagger > .reveal:nth-child(1) { transition-delay: 0s; }
+  .reveal-stagger > .reveal:nth-child(2) { transition-delay: 0.1s; }
+  .reveal-stagger > .reveal:nth-child(3) { transition-delay: 0.15s; }
+  .reveal-stagger > .reveal:nth-child(4) { transition-delay: 0.2s; }
+}
+
+/* Mission cards */
+.mission-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem 2rem 2rem 2rem;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
+  border-left: 4px solid var(--color-brand-gold);
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.mission-card:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.mission-card-icon {
+  display: block;
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+  line-height: 1;
+}

@@ -16,34 +16,37 @@ grandma/
 │   │   ├── mission.md          # Foundation Mission (基金會宗旨)
 │   │   ├── story.md            # Founding Story (創辦緣起)
 │   │   ├── founders.md         # Founders (創辦人)
+│   │   ├── news.md             # Recent News (最新消息)
 │   │   └── donate.md           # Donations (愛心捐款)
 │   └── en/                     # English content
 │       ├── index.md
 │       ├── mission.md
 │       ├── story.md
 │       ├── founders.md
+│       ├── news.md
 │       └── donate.md
 ├── src/                        # ← Source code (technical maintainer only)
 │   ├── components/
-│   │   ├── Header.astro        # Site header with nav + language toggle
+│   │   ├── Header.astro        # Site header with nav + language toggle (inline)
 │   │   ├── Footer.astro        # Site footer with contact info
-│   │   ├── LanguageToggle.astro # tw/en switcher
+│   │   ├── PageHero.astro      # Shared page hero banner with background image
+│   │   ├── MissionCards.astro  # Parses mission markdown into icon cards
 │   │   └── DonationInfo.astro  # Donation methods display
 │   ├── layouts/
 │   │   └── BaseLayout.astro    # Shared layout: head, header, footer, SEO meta
 │   ├── pages/
 │   │   ├── index.astro         # Root → redirects to /tw/ (required by Astro i18n)
 │   │   ├── tw/
-│   │   │   ├── index.astro     # Renders content/tw/index.md
-│   │   │   ├── mission.astro
+│   │   │   ├── index.astro     # Homepage (custom layout, not rendered from index.md)
 │   │   │   ├── story.astro
 │   │   │   ├── founders.astro
+│   │   │   ├── news.astro
 │   │   │   └── donate.astro
 │   │   └── en/
-│   │       ├── index.astro     # Renders content/en/index.md
-│   │       ├── mission.astro
+│   │       ├── index.astro     # Homepage (custom layout)
 │   │       ├── story.astro
 │   │       ├── founders.astro
+│   │       ├── news.astro
 │   │       └── donate.astro
 │   ├── content.config.ts       # Astro content collection definition
 │   └── styles/
@@ -51,8 +54,7 @@ grandma/
 ├── public/
 │   ├── images/
 │   │   ├── founders/           # Portrait photos (including grandma)
-│   │   └── site/               # Logo
-│   ├── favicon.ico
+│   │   └── site/               # Logo + hero background image
 │   └── robots.txt
 ├── astro.config.mjs
 ├── package.json
@@ -64,7 +66,9 @@ grandma/
     ├── main.md
     ├── requirements.md
     ├── tech_choices.md
-    └── architecture.md
+    ├── architecture.md
+    ├── implementation_choices.md
+    └── content_audit.md
 ```
 
 ---
@@ -137,16 +141,18 @@ const { Content } = await entry.render();
 | URL | Content source | Language |
 |-----|---------------|----------|
 | `/` | Redirect → `/tw/` | — |
-| `/tw/` | `content/tw/index.md` | zh-TW |
-| `/tw/mission` | `content/tw/mission.md` | zh-TW |
+| `/tw/` | Homepage (custom layout, pulls from mission.md + story.md + site.json) | zh-TW |
 | `/tw/story` | `content/tw/story.md` | zh-TW |
 | `/tw/founders` | `content/tw/founders.md` | zh-TW |
+| `/tw/news` | `content/tw/news.md` | zh-TW |
 | `/tw/donate` | `content/tw/donate.md` | zh-TW |
-| `/en/` | `content/en/index.md` | en |
-| `/en/mission` | `content/en/mission.md` | en |
+| `/en/` | Homepage (custom layout, pulls from mission.md + story.md + site.json) | en |
 | `/en/story` | `content/en/story.md` | en |
 | `/en/founders` | `content/en/founders.md` | en |
+| `/en/news` | `content/en/news.md` | en |
 | `/en/donate` | `content/en/donate.md` | en |
+
+Note: The Mission section (基金會宗旨) is displayed as a section on the homepage, not as a separate page. The `mission.md` content is parsed by the `MissionCards` component on the homepage.
 
 ### Astro i18n config
 
@@ -166,7 +172,7 @@ export default defineConfig({
 
 ### Language toggle
 
-The `LanguageToggle` component renders as a simple link that swaps `/tw/` ↔ `/en/` in the current URL path. No JavaScript required — it's a plain `<a>` tag. Example: on `/tw/mission`, the toggle links to `/en/mission`.
+The language toggle is built directly into `Header.astro` as a simple link that swaps `/tw/` ↔ `/en/` in the current URL path. No JavaScript required — it's a plain `<a>` tag. Example: on `/tw/story`, the toggle links to `/en/story`.
 
 ---
 
@@ -185,15 +191,30 @@ Wraps every page. Responsibilities:
 ### Header.astro
 
 - Foundation name/logo
-- Navigation links: Homepage, Mission, Story, Founders, Donate
-- Language toggle (tw/en)
-- Responsive: hamburger menu on mobile
+- Navigation links: Homepage, Story, Founders, News (from `site.json` nav config)
+- Donate CTA button (styled separately as gold pill)
+- Language toggle (tw/en, inline — no separate component)
+- Responsive: hamburger menu on mobile with vanilla JS toggle
 
 ### Footer.astro
 
 - Contact info: address, email, website
 - Foundation name
+- Quick links (Story, Founders, News, Donate)
 - Copyright notice
+- All text sourced from `site.json`
+
+### PageHero.astro
+
+- Shared hero banner for inner pages (story, founders, news, donate)
+- Background image (`hero-background.jpg`) with gradient overlay
+- Takes `title` and optional `subtitle` props
+
+### MissionCards.astro
+
+- Parses raw mission markdown body to extract emoji-prefixed list items
+- Renders cards with large emoji icons and text
+- Used on homepage to display mission section
 
 ---
 
@@ -208,13 +229,15 @@ Using Tailwind CSS v4 with Astro's official Vite plugin integration. Tailwind v4
 @import "tailwindcss";
 
 @theme {
-  --color-brand-teal: #004e7a;
-  --color-brand-cream: #fff8f0;
-  --color-brand-green: #012b1b;
+  --color-brand-teal: #2a3a5c;       /* deep indigo navy — primary */
+  --color-brand-teal-dark: #1a2640;   /* darker navy — gradients */
+  --color-brand-cream: #f7f5f0;       /* warm cream — body background */
+  --color-brand-green: #141c2e;       /* dark navy — footer */
+  --color-brand-gold: #c4956a;        /* amber copper — accent/CTAs */
 }
 ```
 
-Brand colors are then available as `bg-brand-teal`, `text-brand-cream`, etc.
+Brand colors are available as `bg-brand-teal`, `text-brand-cream`, etc. The variable names (`teal`, `green`) are historical — the actual colors are an indigo navy palette chosen to complement the sepia-toned hero background image.
 
 ### Typography
 
@@ -354,6 +377,6 @@ This is a technical change and would require the technical maintainer.
 
 ## 11. Future considerations
 
-- **News/updates section**: If the foundation wants to post news updates, add a `content/tw/news/` and `content/en/news/` directory with dated markdown files and a dynamic `[...slug].astro` page to render them. The non-technical maintainer can add new posts by creating new markdown files.
 - **Image optimization**: Astro's `<Image />` component can be used for automatic format conversion (WebP/AVIF) and responsive sizing.
 - **Contact form**: If needed, can be added as a React island component using a third-party form service (Formspree, etc.) to avoid needing a backend.
+- **Favicon**: Currently using the logo PNG as favicon. A proper multi-size favicon set (16x16, 32x32, apple-touch-icon) could be generated from the logo using realfavicongenerator.net.
