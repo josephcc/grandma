@@ -1,7 +1,6 @@
 # All files require technical maintainer review by default
-* @josephc
+* @josephcc
 
 # Markdown content — non-technical maintainer can merge freely
 /content/tw/
 /content/en/
-/content/README.md
