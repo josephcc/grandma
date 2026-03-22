@@ -240,18 +240,24 @@ description: "頁面描述，用於搜尋引擎顯示。"
 
 1. 在 GitHub 上完成編輯後，點選頁面下方的 **「Commit changes...」** 按鈕
 2. 在彈出的視窗中，可以簡單寫一下修改說明（例如「更新最新消息」），也可以不填直接送出
-3. 選擇 **「Commit directly to the `main` branch」**，然後按 **「Commit changes」**
-4. 儲存後，網站會**自動重新部署**，大約 **1～2 分鐘**後就會生效
-5. 到 https://lhyymed.fund 重新整理頁面即可看到更新
+3. GitHub 會顯示「You can't commit to main because it is a protected branch」——**這是正常的**，不用擔心
+4. 選擇 **「Create a new branch for this commit and start a pull request」**
+5. 分支名稱可以不用改，直接點選 **「Propose changes」**
+6. 進入 Pull Request 頁面後，點選綠色的 **「Create pull request」** 按鈕
+7. 接著點選 **「Merge pull request」**
+8. 再點選 **「Confirm merge」** 完成合併
 
-> 中文和英文的 Markdown 內容檔案**不需要任何人審核**，儲存後直接生效。
+> 因為內容檔案（.md）**不需要任何人審核**，所以你可以自己建立 PR 後**立即合併**，不需要等待任何人批准。整個流程只是多按幾個按鈕而已。
+
+9. 合併後，網站會**自動重新部署**，大約 **1～2 分鐘**後就會生效
+10. 到 https://lhyymed.fund 重新整理頁面即可看到更新
 
 ### 修改網站設定（site.json）
 
 1. 編輯完成後，點選 **「Commit changes...」**
-2. 選擇 **「Create a new branch for this commit and start a pull request」**
+2. 同樣選擇 **「Create a new branch for this commit and start a pull request」**
 3. 點選 **「Propose changes」** 建立 Pull Request
-4. 等待技術維護者審核通過後，才會發布到正式網站
+4. **注意：這次你無法自己合併**——需要等待技術維護者審核通過後，才會發布到正式網站
 
 ---
 
