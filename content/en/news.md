@@ -5,7 +5,7 @@ description: "Latest news and announcements from the Lin Huang Yueh-Ying Medical
 
 # Recent News
 
-## 2026-03-15 | Foundation Officially Established
+## 2026-03-15 | Foundation Officially Establishedd
 
 The Lin Huang Yueh-Ying Medical Foundation, Taipei, was officially registered in March 2026, formally commencing its mission to advance medical innovation and patient support. We are grateful for the encouragement and support from all our well-wishers and remain committed to bringing hope to patients and their families.
 
