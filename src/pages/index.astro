@@ -1,3 +1,14 @@
 ---
-return Astro.redirect('/tw/');
+// Instant redirect to default locale — no visible flash
 ---
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0;url=/tw/" />
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href="https://lhyymed.fund/tw/" />
+    <title>Redirecting…</title>
+    <script>window.location.replace('/tw/');</script>
+  </head>
+</html>
