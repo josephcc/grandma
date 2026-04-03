@@ -17,7 +17,7 @@ description: "林黃月英醫療基金會最新消息與活動公告。"
 林伯庭醫師受邀分享肝癌免疫治療之最新進展與臨床經驗，並與國際專家深入交流，展現我國於肝癌治療領域之專業成果與國際影響力。
 
 ---
-## 2025-11-19-2026-11-21｜林伯庭醫師受邀主持國際肝癌學會(International Liver Cancer Association)會議
+## 2025-11-19-2025-11-21｜林伯庭醫師受邀主持國際肝癌學會(International Liver Cancer Association)會議
 林伯庭醫師受邀於國際肝癌學會（International Liver Cancer Association, ILCA）年度會議，主持兩場重要學術專題，參與國際肝癌領域之研究與臨床交流。
 
 ---
