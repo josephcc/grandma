@@ -24,20 +24,20 @@ The first build will take ~30 seconds. Once it succeeds, Vercel gives you a `.ve
 
 ---
 
-## 2. Set up custom domain (`lhyymed.fund`)
+## 2. Set up custom domain (`lhyymed.org`)
 
 ### In Vercel
 
 1. Go to your project in the Vercel dashboard → **Settings** → **Domains**.
-2. Add `lhyymed.fund` as a domain.
+2. Add `lhyymed.org` as a domain.
 3. Vercel will show DNS records you need to configure. Typically:
-   - **A record:** `76.76.21.21` for the apex domain (`lhyymed.fund`)
-   - **CNAME record:** `cname.vercel-dns.com` for `www.lhyymed.fund` (optional)
-4. Vercel will also offer to redirect `www` → apex or vice versa. Choose **redirect `www.lhyymed.fund` → `lhyymed.fund`** (simpler, matches the canonical URL in the code).
+   - **A record:** `76.76.21.21` for the apex domain (`lhyymed.org`)
+   - **CNAME record:** `cname.vercel-dns.com` for `www.lhyymed.org` (optional)
+4. Vercel will also offer to redirect `www` → apex or vice versa. Choose **redirect `www.lhyymed.org` → `lhyymed.org`** (simpler, matches the canonical URL in the code).
 
 ### At your domain registrar
 
-1. Log into wherever you registered `lhyymed.fund`.
+1. Log into wherever you registered `lhyymed.org`.
 2. Go to DNS settings and add the records from the previous step:
    - **A record:** Host `@`, Value `76.76.21.21`
    - **CNAME record:** Host `www`, Value `cname.vercel-dns.com` (optional)
@@ -47,7 +47,7 @@ The first build will take ~30 seconds. Once it succeeds, Vercel gives you a `.ve
 
 - Back in Vercel, the domain status will change from "Pending" to "Valid Configuration" once DNS propagates (usually 1–30 minutes, can take up to 48 hours).
 - Vercel automatically provisions an SSL certificate (HTTPS) — no action needed.
-- Test by visiting `https://lhyymed.fund` in a browser.
+- Test by visiting `https://lhyymed.org` in a browser.
 
 ---
 
@@ -122,7 +122,7 @@ https://github.com/YOUR_USERNAME/grandma/tree/main/content
 
 After completing the above steps, test the full workflow:
 
-1. **Production deploy:** Push a small change to `main` and verify the site updates at `https://lhyymed.fund`.
+1. **Production deploy:** Push a small change to `main` and verify the site updates at `https://lhyymed.org`.
 2. **Preview deploy:** Create a PR with a content change. Verify the Vercel bot posts a preview URL in the PR, and the preview shows the change.
 3. **CODEOWNERS enforcement:** Have the non-technical maintainer create a PR that only edits a markdown file in `content/tw/`. Verify they can merge without your approval.
 4. **CODEOWNERS blocking:** Create a PR that touches a code file. Verify it requires your approval before merging.

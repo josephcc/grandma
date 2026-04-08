@@ -283,7 +283,7 @@ bun run preview      # Preview production build locally
 2. Vercel auto-detects Astro, sets build command (`astro build`) and output directory (`dist/`).
 3. **On push to `main`**: Vercel automatically builds and deploys to production.
 4. **On PR**: Vercel creates a preview deployment with a unique URL. The non-technical maintainer can view the preview before merging.
-5. Custom domain `lhyymed.fund` configured in Vercel dashboard with DNS pointing to Vercel.
+5. Custom domain `lhyymed.org` configured in Vercel dashboard with DNS pointing to Vercel.
 
 ### Astro config
 
@@ -295,7 +295,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://lhyymed.fund',
+  site: 'https://lhyymed.org',
   integrations: [sitemap()],
   i18n: {
     defaultLocale: 'tw',

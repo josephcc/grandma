@@ -56,7 +56,7 @@ This document lists technology decisions for the project. Each section presents 
 - Zero-config Astro deploys (Vercel auto-detects Astro projects).
 - Built-in image optimization, HTTP header control, proper redirects.
 - Free tier is more than sufficient for a non-profit foundation website.
-- Custom domain (lhyymed.fund) supported.
+- Custom domain (lhyymed.org) supported.
 - **Switching to GitHub Pages later** is ~30 minutes of work: remove Vercel adapter, add a GitHub Actions workflow (~30 lines), update DNS. Site code and content don't change at all.
 
 **Decision:**: Vercel

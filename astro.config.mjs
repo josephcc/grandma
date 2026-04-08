@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://lhyymed.fund',
+  site: 'https://lhyymed.org',
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],

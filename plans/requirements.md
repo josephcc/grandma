@@ -16,7 +16,7 @@
 
 ## User requirements
 
-Based on the current website at https://lhyymed.fund/, the following are the detailed user requirements:
+Based on the current website at https://lhyymed.org/, the following are the detailed user requirements:
 
 ### Bilingual support (i18n)
 
@@ -63,7 +63,7 @@ Based on the current website at https://lhyymed.fund/, the following are the det
 ### Contact information (footer)
 
 - Address: 2F., No. 2, Ln. 55, Tong'an St., Zhongzheng Dist., Taipei City 10037
-- Website: https://lhyymed.fund/
+- Website: https://lhyymed.org/
 - Email: lhyy.med.foundation@gmail.com
 
 ### SEO requirements
@@ -101,7 +101,7 @@ Now that the site is implemented, the technical maintainer's responsibilities ar
 1. **Reviewing PRs that touch `content/site.json` or code files** — the non-technical maintainer can merge markdown-only PRs independently, but changes to `site.json` (nav labels, donation info, footer text) or any code require your approval via CODEOWNERS.
 2. **Adding new pages** — create new markdown files in `content/tw/` and `content/en/`, new page files in `src/pages/tw/` and `src/pages/en/`, add `nav` entries to `content/site.json`, and add the nav item to `Header.astro`'s `navItems` array and `Footer.astro`'s quick links.
 3. **Dependency updates** — periodically run `bun update` to keep Astro, Tailwind, and other deps current. Since the site is static HTML output, breaking changes are rare and easily caught by running `bun run build`.
-4. **Domain/DNS management** — ensure `lhyymed.fund` DNS continues pointing to Vercel.
+4. **Domain/DNS management** — ensure `lhyymed.org` DNS continues pointing to Vercel.
 5. **Vercel dashboard** — monitor build status, review preview deployments. Free tier is more than sufficient.
 6. **CODEOWNERS username** — update `@josephc` placeholder in `CODEOWNERS` to your actual GitHub username.
 

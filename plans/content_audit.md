@@ -182,7 +182,7 @@ This document maps every piece of visible text on the website to its source, and
 | Quick Links heading | "快速連結" | "Quick Links" | `site.json` → `ui.quickLinks` | site.json |
 | Quick link labels | (uses nav labels) | (uses nav labels) | `site.json` → `nav.*` | site.json |
 | Copyright | "© 2025 財團法人臺北市林黃月英醫療基金會" | "© 2025 Lin Huang Yueh-Ying..." | `site.json` → `footer.copyright` | site.json |
-| Website URL | "https://lhyymed.fund/" | same | `site.json` → `shared.website` | site.json |
+| Website URL | "https://lhyymed.org/" | same | `site.json` → `shared.website` | site.json |
 
 ---
 
