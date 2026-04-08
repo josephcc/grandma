@@ -4,7 +4,10 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://lhyymed.org',
-  integrations: [sitemap({ lastmod: new Date() })],
+  integrations: [sitemap({
+    lastmod: new Date(),
+    filter: (page) => page !== 'https://lhyymed.org/',
+  })],
   vite: {
     plugins: [tailwindcss()],
   },

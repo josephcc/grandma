@@ -36,6 +36,7 @@ const altURL = new URL(altPath, Astro.site);
     <link rel="canonical" href={canonicalURL} />
     <link rel="alternate" hreflang={altLang} href={altURL} />
     <link rel="alternate" hreflang={lang} href={canonicalURL} />
+    <link rel="alternate" hreflang="x-default" href={new URL('/tw/', Astro.site)} />
     <link rel="icon" href="/images/site/favicon.png" type="image/png" />
 
     <!-- Open Graph -->
@@ -46,6 +47,12 @@ const altURL = new URL(altPath, Astro.site);
     <meta property="og:site_name" content={config.siteName} />
     <meta property="og:locale" content={lang === 'zh-TW' ? 'zh_TW' : 'en_US'} />
     <meta property="og:image" content={new URL('/images/site/logo.png', Astro.site)} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL('/images/site/logo.png', Astro.site)} />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
