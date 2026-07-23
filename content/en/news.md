@@ -42,3 +42,15 @@ The official website of the Foundation is now live. It provides information on o
 
 ## 2026-03-07｜Liver Disease Patient Education and Support Seminar
 This seminar provides education and support resources for patients with liver disease, offering guidance, companionship, and opportunities for peer interaction, in line with our mission of “walking alongside patients.”
+
+---
+
+## 2026-05-20｜Launch of the “Liver Cancer Patient Treatment Support Program”
+The Foundation has launched the “Liver Cancer Patient Treatment Support Program,” which subsidizes the first course of self-paid targeted therapy or immunotherapy for liver cancer patients facing financial hardship, helping them transition back into treatment covered by the National Health Insurance system.
+
+---
+
+## 2026-06-10｜Foundation-Supported Liver Cancer Immunotherapy Research Published in International Journal
+A liver cancer immunotherapy study by the Chang Gung medical team has been published in the international journal *Journal of Cancer* (2026; 17(6): 1220-1228). The study investigated the predictive value of genotypes for immunotherapy efficacy and side effects in patients with hepatitis B virus-related hepatocellular carcinoma. The Foundation provided academic guidance and professional consultation throughout the research, and is gratefully acknowledged in the publication. We will continue to follow and support liver cancer research to improve treatment outcomes for patients.
+
+Reference: Lin PT, Lin CY et al. GALNT14-rs9679162 Genotypes Predict Post-immunotherapy Side Effect and Survival in Patients with Hepatitis B Virus-related Hepatocellular Carcinoma. J Cancer. 2026;17(6):1220-1228. doi:10.7150/jca.133473
