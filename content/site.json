@@ -27,7 +27,8 @@
     },
     "footer": {
       "address": "10037 臺北市中正區同安街55巷2號2樓",
-      "copyright": "© 2026 財團法人臺北市林黃月英醫療基金會"
+      "copyright": "© 2026 財團法人臺北市林黃月英醫療基金會",
+      "disclosure": "本會相關財務及業務資料，歡迎來信申請閱覽"
     },
     "donation": {
       "creditCard": {
@@ -82,7 +83,8 @@
     },
     "footer": {
       "address": "2F., No. 2, Ln. 55, Tong'an St., Zhongzheng Dist., Taipei City 10037",
-      "copyright": "© 2026 Lin Huang Yueh-Ying Medical Foundation, Taipei, Taiwan"
+      "copyright": "© 2026 Lin Huang Yueh-Ying Medical Foundation, Taipei, Taiwan",
+      "disclosure": "Financial and operational records of the Foundation are available for review upon request by email"
     },
     "donation": {
       "creditCard": {
